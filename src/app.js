@@ -34,7 +34,8 @@ module.exports.starthandlers = Alexa.CreateStateHandler(states.START, {
 	},
 
 	'AMAZON.YesIntent' : function(){
-		this.emit(':tell', GREAT);
+		this.handler.state = states.GUESSING;
+		this.emitWithState('Start');
 	},
 
 	'AMAZON.NOIntent' : function() {
@@ -45,4 +46,15 @@ module.exports.starthandlers = Alexa.CreateStateHandler(states.START, {
         this.emitWithState('Start');
     }
 
+});
+
+module.exports.guesshandlers = Alexa.CreateStateHandler(states.GUESSING, {
+	Start(){
+		this.emit(':tell', GREAT);
+	},
+
+	Unhandled() {
+        this.handler.state = states.START;
+        this.emitWithState('Start');
+    }
 });
