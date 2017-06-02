@@ -51,7 +51,7 @@ module.exports.starthandlers = Alexa.CreateStateHandler(states.START, {
 module.exports.guesshandlers = Alexa.CreateStateHandler(states.GUESSING, {
 	Start(){
 		this.attributes.numberToGuess = 5;
-		this.emit(':tell', GREAT);
+		this.emit(':ask', GREAT);
 	},
 
 	'NumberGuessIntent' : function() {
