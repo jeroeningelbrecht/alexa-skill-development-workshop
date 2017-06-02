@@ -5,6 +5,8 @@ const TOO_LOW = ' is too low';
 const TOO_HIGH = ' is too high';
 const CORRECT = ' is correct! Would you like to play a new game?';
 
+this.attributes.numberToGuess = 0;
+
 let speech = '';
 
 const Alexa = require('alexa-sdk');
@@ -50,7 +52,15 @@ module.exports.starthandlers = Alexa.CreateStateHandler(states.START, {
 
 module.exports.guesshandlers = Alexa.CreateStateHandler(states.GUESSING, {
 	Start(){
+		this.attributes.numberToGuess = 5;
 		this.emit(':tell', GREAT);
+	},
+
+	'NumberGuessIntent' : function() {
+		var number = parseInt(this.event.request.intent.slots.number.value);
+		if(number === this.attributes.numberToGuess) {
+			this.emit(':tell', CORRECT);
+		}
 	},
 
 	Unhandled() {
