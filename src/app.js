@@ -5,8 +5,6 @@ const TOO_LOW = ' is too low';
 const TOO_HIGH = ' is too high';
 const CORRECT = ' is correct! Would you like to play a new game?';
 
-this.attributes.numberToGuess = 0;
-
 let speech = '';
 
 const Alexa = require('alexa-sdk');
