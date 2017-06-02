@@ -30,6 +30,10 @@ module.exports.starthandlers = Alexa.CreateStateHandler(states.START, {
 
 	Start(){
 		this.emit(':ask', WELCOME_MESSAGE);
+	},
+
+	AMAZON.YesIntent(): function(){
+		this.emit(':tell', GREAT);
 	}
 
 });
