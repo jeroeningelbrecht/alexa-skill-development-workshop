@@ -57,7 +57,7 @@ module.exports.guesshandlers = Alexa.CreateStateHandler(states.GUESSING, {
 	'NumberGuessIntent' : function() {
 		var number = parseInt(this.event.request.intent.slots.number.value);
 		if(number === this.attributes.numberToGuess) {
-			this.emit(':tell', CORRECT);
+			this.emit(':ask', CORRECT);
 		}
 	},
 
