@@ -26,7 +26,7 @@ module.exports.handlers = {
     
 };
 
-module.exports.starthandlers = Alexa.createStateHandler(states.START, {
+module.exports.starthandlers = Alexa.CreateStateHandler(states.START, {
 
 	Start(){
 		this.emit(':ask', WELCOME_MESSAGE);
