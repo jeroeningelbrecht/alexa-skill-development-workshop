@@ -50,18 +50,19 @@ module.exports.starthandlers = Alexa.CreateStateHandler(states.START, {
 
 module.exports.guesshandlers = Alexa.CreateStateHandler(states.GUESSING, {
 	Start(){
-		this.attributes.numberToGuess = 5;
+		this.attributes.numberToGuess = Math.floor(Math.random() * (10 - 1)) + 1;
 		this.emit(':ask', GREAT);
 	},
 
 	'NumberGuessIntent' : function() {
 		var number = parseInt(this.event.request.intent.slots.number.value);
-		if(number == this.attributes.numberToGuess) {
-			this.emit(':tell', CORRECT);
+		if(number === this.attributes.numberToGuess) {
+			this.handler.state = states.START;
+			this.emit(':ask', CORRECT);
 		} else if(number < this.attributes.numberToGuess) {
 			this.emit(':ask', number + TOO_LOW);
 		} else {
-			this.emit(':ask', number + TOO_LOW);
+			this.emit(':ask', number + TOO_HIGH);
 		}
 	},
 
