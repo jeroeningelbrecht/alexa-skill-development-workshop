@@ -1,5 +1,6 @@
 const WELCOME_MESSAGE = 'Welcome to High Low guessing game.  You have played 0 times.  Would you like to play?';
 const GREAT = 'Great! Try saying a number to start the game';
+const BYE = 'Ok, see you next time!';
 const TOO_LOW = ' is too low';
 const TOO_HIGH = ' is too high';
 const CORRECT = ' is correct! Would you like to play a new game?';
@@ -32,8 +33,12 @@ module.exports.starthandlers = Alexa.CreateStateHandler(states.START, {
 		this.emit(':ask', WELCOME_MESSAGE);
 	},
 
-	AMAZON.YesIntent(): function(){
+	'AMAZON.YesIntent' : function(){
 		this.emit(':tell', GREAT);
+	},
+
+	'AMAZON.NOIntent' : function() {
+		this.emit(':tell', BYE);
 	}
 
 });
