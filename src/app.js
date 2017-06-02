@@ -39,6 +39,10 @@ module.exports.starthandlers = Alexa.CreateStateHandler(states.START, {
 
 	'AMAZON.NOIntent' : function() {
 		this.emit(':tell', BYE);
-	}
+	},
+	Unhandled() {
+        this.handler.state = states.START;
+        this.emitWithState('Start');
+    }
 
 });
